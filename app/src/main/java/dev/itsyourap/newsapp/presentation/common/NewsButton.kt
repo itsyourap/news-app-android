@@ -45,7 +45,5 @@ fun NewsTextButton(
 @Preview
 @Composable
 fun NewsButtonPreview() {
-    NewsButton(text = "Click Me") {
-
-    }
+    NewsButton(text = "Click Me", onClick = {})
 }
