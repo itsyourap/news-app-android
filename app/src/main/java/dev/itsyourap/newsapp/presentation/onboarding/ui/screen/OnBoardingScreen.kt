@@ -63,7 +63,7 @@ fun OnBoardingScreen() {
                 .fillMaxWidth()
                 .padding(horizontal = MediumPadding2)
                 .navigationBarsPadding()
-                .padding(vertical = 20.dp),
+                .padding(vertical = 15.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
