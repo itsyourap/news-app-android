@@ -74,14 +74,14 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.1")
 
     // Compose Navigation
-    val navComposeVersion = "2.7.6"
+    val navComposeVersion = "2.7.7"
     implementation("androidx.navigation:navigation-compose:$navComposeVersion")
 
     // Dagger Hilt
     val daggerHiltVersion = "2.50"
     implementation("com.google.dagger:hilt-android:$daggerHiltVersion")
     ksp("com.google.dagger:hilt-compiler:$daggerHiltVersion")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
     // Retrofit
     val retrofitVersion = "2.9.0"
@@ -95,7 +95,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Compose Foundation
-    implementation("androidx.compose.foundation:foundation:1.5.4")
+    implementation("androidx.compose.foundation:foundation:1.6.2")
 
     // Accompanist
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.32.0")
