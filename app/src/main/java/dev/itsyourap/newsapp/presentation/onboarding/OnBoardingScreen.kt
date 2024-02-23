@@ -1,4 +1,4 @@
-package dev.itsyourap.newsapp.presentation.onboarding.ui.screen
+package dev.itsyourap.newsapp.presentation.onboarding
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
@@ -24,11 +24,10 @@ import androidx.compose.ui.unit.dp
 import dev.itsyourap.newsapp.presentation.common.NewsButton
 import dev.itsyourap.newsapp.presentation.common.NewsTextButton
 import dev.itsyourap.newsapp.presentation.common.PageIndicator
-import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingEvent
 import dev.itsyourap.newsapp.presentation.onboarding.model.pages
 import dev.itsyourap.newsapp.presentation.Dimens.MediumPadding2
 import dev.itsyourap.newsapp.presentation.Dimens.PageIndicatorWidth
-import dev.itsyourap.newsapp.presentation.onboarding.ui.component.OnBoardingPage
+import dev.itsyourap.newsapp.presentation.onboarding.components.OnBoardingPage
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)

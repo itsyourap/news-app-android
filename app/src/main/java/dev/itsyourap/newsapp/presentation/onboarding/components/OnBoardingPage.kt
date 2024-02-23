@@ -1,4 +1,4 @@
-package dev.itsyourap.newsapp.presentation.onboarding.ui.component
+package dev.itsyourap.newsapp.presentation.onboarding.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
