@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
-    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -80,6 +81,7 @@ dependencies {
     // Dagger Hilt
     val daggerHiltVersion = "2.50"
     implementation("com.google.dagger:hilt-android:$daggerHiltVersion")
+    ksp("com.google.dagger:dagger-compiler:$daggerHiltVersion")
     ksp("com.google.dagger:hilt-compiler:$daggerHiltVersion")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
