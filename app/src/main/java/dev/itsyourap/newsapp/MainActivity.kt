@@ -1,45 +1,51 @@
 package dev.itsyourap.newsapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.lifecycleScope
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
-import dev.itsyourap.newsapp.domain.usecases.AppEntryUseCases
-import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingViewModel
-import dev.itsyourap.newsapp.presentation.onboarding.ui.screen.OnBoardingScreen
+import dev.itsyourap.newsapp.presentation.navgraph.NavGraph
 import dev.itsyourap.newsapp.ui.theme.NewsAppTheme
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
+    private val viewModel by viewModels<MainViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
-        lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect {
-                Log.d("Test", it.toString())
+        installSplashScreen().apply {
+            setKeepOnScreenCondition {
+                viewModel.splashCondition
             }
         }
         setContent {
             NewsAppTheme {
+                val isSystemInDarkMode = isSystemInDarkTheme()
+                val systemController = rememberSystemUiController()
+                val backgroundColor = MaterialTheme.colorScheme.background
+
+                SideEffect {
+                    systemController.setSystemBarsColor(
+                        color = backgroundColor,
+                        darkIcons = !isSystemInDarkMode
+                    )
+                }
+
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = backgroundColor
                 ) {
-                    val viewModel: OnBoardingViewModel = hiltViewModel()
-                    OnBoardingScreen(event = viewModel::onEvent)
+                    val startDestination = viewModel.startDestination
+                    NavGraph(startDestination = startDestination)
                 }
             }
         }
