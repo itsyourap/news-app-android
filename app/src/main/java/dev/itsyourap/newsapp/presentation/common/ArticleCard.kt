@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -46,15 +47,17 @@ fun ArticleCard(
 ) {
     val context = LocalContext.current
 
-    Row(modifier = modifier.clickable { onClick() }) {
+    Row(modifier = modifier.clip(MaterialTheme.shapes.medium).clickable { onClick() }) {
         AsyncImage(
             modifier = Modifier
                 .size(ArticleCardSize)
                 .clip(MaterialTheme.shapes.medium),
             model = ImageRequest.Builder(context).data(article.urlToImage).build(),
+            contentScale = ContentScale.Crop,
             contentDescription = null
         )
 
+        Spacer(modifier = Modifier.width(ExtraSmallPadding2))
         Column(
             modifier = Modifier
                 .padding(horizontal = ExtraSmallPadding1)
@@ -69,16 +72,15 @@ fun ArticleCard(
                 overflow = TextOverflow.Ellipsis
             )
 
+            Text(
+                text = article.source.name,
+                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
+                color = MaterialTheme.colorScheme.secondary
+            )
+
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(
-                    text = article.source.name,
-                    style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    color = MaterialTheme.colorScheme.secondary
-                )
-
-                Spacer(modifier = Modifier.width(ExtraSmallPadding2))
                 Icon(
                     modifier = Modifier.size(SmallIconSize),
                     painter = painterResource(id = R.drawable.ic_time),
