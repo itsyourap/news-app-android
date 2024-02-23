@@ -9,9 +9,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
 import dev.itsyourap.newsapp.domain.usecases.AppEntryUseCases
+import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingViewModel
 import dev.itsyourap.newsapp.presentation.onboarding.ui.screen.OnBoardingScreen
 import dev.itsyourap.newsapp.ui.theme.NewsAppTheme
 import kotlinx.coroutines.launch
@@ -36,7 +38,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    OnBoardingScreen()
+                    val viewModel: OnBoardingViewModel = hiltViewModel()
+                    OnBoardingScreen(event = viewModel::onEvent)
                 }
             }
         }

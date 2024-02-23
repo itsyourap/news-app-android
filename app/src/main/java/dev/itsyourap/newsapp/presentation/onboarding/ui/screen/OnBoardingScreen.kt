@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -25,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import dev.itsyourap.newsapp.presentation.common.NewsButton
 import dev.itsyourap.newsapp.presentation.common.NewsTextButton
 import dev.itsyourap.newsapp.presentation.common.PageIndicator
+import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingEvent
 import dev.itsyourap.newsapp.presentation.onboarding.model.pages
 import dev.itsyourap.newsapp.presentation.onboarding.ui.Dimens.MediumPadding2
 import dev.itsyourap.newsapp.presentation.onboarding.ui.Dimens.PageIndicatorWidth
@@ -33,7 +33,9 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnBoardingScreen() {
+fun OnBoardingScreen(
+    event: (OnBoardingEvent) -> Unit
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
     ) {
@@ -88,7 +90,7 @@ fun OnBoardingScreen() {
                 NewsButton(text = buttonState[1], onClick = {
                     scope.launch {
                         if (pagerState.currentPage == pagerState.pageCount - 1)
-                        // TODO : Navigate to Main Screen
+                            event(OnBoardingEvent.SaveAppEntry)
                         else
                             pagerState.animateScrollToPage(page = pagerState.currentPage + 1)
                     }
@@ -101,5 +103,5 @@ fun OnBoardingScreen() {
 @Preview(showBackground = true)
 @Composable
 fun OnBoardingScreenPreview() {
-    OnBoardingScreen()
+    OnBoardingScreen(event = {})
 }
