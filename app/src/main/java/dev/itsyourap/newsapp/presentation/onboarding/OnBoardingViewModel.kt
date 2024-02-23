@@ -3,7 +3,7 @@ package dev.itsyourap.newsapp.presentation.onboarding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dev.itsyourap.newsapp.domain.usecases.AppEntryUseCases
+import dev.itsyourap.newsapp.domain.usecases.app_entry.AppEntryUseCases
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
