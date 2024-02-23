@@ -26,8 +26,8 @@ import dev.itsyourap.newsapp.presentation.common.NewsTextButton
 import dev.itsyourap.newsapp.presentation.common.PageIndicator
 import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingEvent
 import dev.itsyourap.newsapp.presentation.onboarding.model.pages
-import dev.itsyourap.newsapp.presentation.onboarding.ui.Dimens.MediumPadding2
-import dev.itsyourap.newsapp.presentation.onboarding.ui.Dimens.PageIndicatorWidth
+import dev.itsyourap.newsapp.presentation.Dimens.MediumPadding2
+import dev.itsyourap.newsapp.presentation.Dimens.PageIndicatorWidth
 import dev.itsyourap.newsapp.presentation.onboarding.ui.component.OnBoardingPage
 import kotlinx.coroutines.launch
 

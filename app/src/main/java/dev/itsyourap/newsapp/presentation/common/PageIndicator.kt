@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import dev.itsyourap.newsapp.presentation.onboarding.ui.Dimens.IndicatorSize
+import dev.itsyourap.newsapp.presentation.Dimens.IndicatorSize
 
 @Composable
 fun PageIndicator(

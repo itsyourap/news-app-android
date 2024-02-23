@@ -1,4 +1,4 @@
-package dev.itsyourap.newsapp.presentation.onboarding.ui
+package dev.itsyourap.newsapp.presentation
 
 import androidx.compose.ui.unit.dp
 
@@ -7,4 +7,10 @@ object Dimens {
     val MediumPadding2 = 30.dp
     val IndicatorSize = 14.dp
     val PageIndicatorWidth = 52.dp
+
+    val ArticleCardSize = 96.dp
+    val ExtraSmallPadding1 = 3.dp
+    val ExtraSmallPadding2 = 6.dp
+
+    val SmallIconSize = 11.dp
 }
