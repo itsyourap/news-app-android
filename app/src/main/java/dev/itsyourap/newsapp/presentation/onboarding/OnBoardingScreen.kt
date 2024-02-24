@@ -24,13 +24,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.itsyourap.newsapp.presentation.Dimens.MediumPadding2
+import dev.itsyourap.newsapp.presentation.Dimens.PageIndicatorWidth
 import dev.itsyourap.newsapp.presentation.common.NewsButton
 import dev.itsyourap.newsapp.presentation.common.NewsTextButton
 import dev.itsyourap.newsapp.presentation.common.PageIndicator
-import dev.itsyourap.newsapp.presentation.onboarding.model.pages
-import dev.itsyourap.newsapp.presentation.Dimens.MediumPadding2
-import dev.itsyourap.newsapp.presentation.Dimens.PageIndicatorWidth
 import dev.itsyourap.newsapp.presentation.onboarding.components.OnBoardingPage
+import dev.itsyourap.newsapp.presentation.onboarding.model.pages
 import dev.itsyourap.newsapp.ui.theme.NewsAppTheme
 import kotlinx.coroutines.launch
 

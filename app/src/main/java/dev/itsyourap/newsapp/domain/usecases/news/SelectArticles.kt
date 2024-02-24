@@ -1,13 +1,13 @@
 package dev.itsyourap.newsapp.domain.usecases.news
 
-import dev.itsyourap.newsapp.data.local.NewsDao
 import dev.itsyourap.newsapp.domain.model.Article
+import dev.itsyourap.newsapp.domain.repository.NewsRepository
 import kotlinx.coroutines.flow.Flow
 
-class SelectArticle(
-    private val newsDao: NewsDao
+class SelectArticles(
+    private val newsRepository: NewsRepository
 ) {
     operator fun invoke(): Flow<List<Article>> {
-        return newsDao.getArticles()
+        return newsRepository.selectArticles()
     }
 }

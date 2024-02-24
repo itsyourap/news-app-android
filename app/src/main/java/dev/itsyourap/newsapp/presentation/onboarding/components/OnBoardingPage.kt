@@ -16,10 +16,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import dev.itsyourap.newsapp.presentation.onboarding.model.Page
-import dev.itsyourap.newsapp.presentation.onboarding.model.pages
 import dev.itsyourap.newsapp.presentation.Dimens.MediumPadding1
 import dev.itsyourap.newsapp.presentation.Dimens.MediumPadding2
+import dev.itsyourap.newsapp.presentation.onboarding.model.Page
+import dev.itsyourap.newsapp.presentation.onboarding.model.pages
 import dev.itsyourap.newsapp.ui.theme.NewsAppTheme
 
 @Composable

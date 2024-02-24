@@ -17,6 +17,7 @@ object Dimens {
 
     val SmallIconSize = 11.dp
     val LargeIconSize = 20.dp
+    val VeryLargeIconSize = 30.dp
 
     val ArticleImageHeight = 248.dp
 }

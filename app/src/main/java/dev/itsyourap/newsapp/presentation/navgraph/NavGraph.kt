@@ -6,15 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import androidx.paging.compose.collectAsLazyPagingItems
-import dev.itsyourap.newsapp.presentation.bookmark.BookmarkScreen
-import dev.itsyourap.newsapp.presentation.bookmark.BookmarkViewModel
-import dev.itsyourap.newsapp.presentation.home.HomeScreen
-import dev.itsyourap.newsapp.presentation.home.HomeViewModel
-import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingViewModel
+import dev.itsyourap.newsapp.presentation.news_navigator.NewsNavigator
 import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingScreen
-import dev.itsyourap.newsapp.presentation.search.SearchScreen
-import dev.itsyourap.newsapp.presentation.search.SearchViewModel
+import dev.itsyourap.newsapp.presentation.onboarding.OnBoardingViewModel
 
 @Composable
 fun NavGraph(
@@ -39,22 +33,7 @@ fun NavGraph(
             startDestination = Route.NewsNavigatorScreen.route
         ) {
             composable(route = Route.NewsNavigatorScreen.route) {
-                val viewModel: HomeViewModel = hiltViewModel()
-                val articles = viewModel.news.collectAsLazyPagingItems()
-                HomeScreen(articles = articles, navigate = { })
-            }
-
-            composable(route = Route.SearchScreen.route) {
-                val viewModel: SearchViewModel = hiltViewModel()
-                SearchScreen(
-                    state = viewModel.state.value,
-                    event = viewModel::onEvent,
-                    navigate = { })
-            }
-
-            composable(route = Route.BookmarkScreen.route) {
-                val viewModel: BookmarkViewModel = hiltViewModel()
-                BookmarkScreen(state = viewModel.state.value, navigate = { })
+               NewsNavigator()
             }
         }
     }
