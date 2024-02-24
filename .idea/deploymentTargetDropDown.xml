@@ -8,7 +8,10 @@
       <entry key="ArticleCardShimmerEffectPreview">
         <State />
       </entry>
-      <entry key="OnBoardingPagePreview">
+      <entry key="DetailsScreenPreview">
+        <State />
+      </entry>
+      <entry key="OnBoardingScreenPreview">
         <State />
       </entry>
       <entry key="SearchBarPreview">

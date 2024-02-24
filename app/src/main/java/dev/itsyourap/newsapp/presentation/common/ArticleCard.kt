@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccessTime
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -22,14 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import dev.itsyourap.newsapp.R
 import dev.itsyourap.newsapp.domain.model.Article
 import dev.itsyourap.newsapp.domain.model.Source
 import dev.itsyourap.newsapp.presentation.Dimens
@@ -83,7 +83,7 @@ fun ArticleCard(
             ) {
                 Icon(
                     modifier = Modifier.size(SmallIconSize),
-                    painter = painterResource(id = R.drawable.ic_time),
+                    imageVector = Icons.Filled.AccessTime,
                     tint = MaterialTheme.colorScheme.secondary,
                     contentDescription = null
                 )
