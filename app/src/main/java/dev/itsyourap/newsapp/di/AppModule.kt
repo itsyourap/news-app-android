@@ -17,9 +17,12 @@ import dev.itsyourap.newsapp.domain.repository.NewsRepository
 import dev.itsyourap.newsapp.domain.usecases.app_entry.AppEntryUseCases
 import dev.itsyourap.newsapp.domain.usecases.app_entry.ReadAppEntry
 import dev.itsyourap.newsapp.domain.usecases.app_entry.SaveAppEntry
+import dev.itsyourap.newsapp.domain.usecases.news.DeleteArticle
 import dev.itsyourap.newsapp.domain.usecases.news.GetNews
 import dev.itsyourap.newsapp.domain.usecases.news.NewsUseCases
 import dev.itsyourap.newsapp.domain.usecases.news.SearchNews
+import dev.itsyourap.newsapp.domain.usecases.news.SelectArticle
+import dev.itsyourap.newsapp.domain.usecases.news.UpsertArticle
 import dev.itsyourap.newsapp.util.Constants
 import dev.itsyourap.newsapp.util.Constants.NEWS_DATABASE_NAME
 import retrofit2.Retrofit
@@ -63,10 +66,14 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsUseCases(
-        newsRepository: NewsRepository
+        newsRepository: NewsRepository,
+        newsDao: NewsDao
     ): NewsUseCases = NewsUseCases(
         getNews = GetNews(newsRepository),
-        searchNews = SearchNews(newsRepository)
+        searchNews = SearchNews(newsRepository),
+        deleteArticle = DeleteArticle(newsDao),
+        upsertArticle = UpsertArticle(newsDao),
+        selectArticle = SelectArticle(newsDao)
     )
 
     @Provides
