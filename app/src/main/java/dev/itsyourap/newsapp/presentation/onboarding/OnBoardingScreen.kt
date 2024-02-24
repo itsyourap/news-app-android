@@ -1,5 +1,6 @@
 package dev.itsyourap.newsapp.presentation.onboarding
 
+import android.content.res.Configuration
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
@@ -28,6 +31,7 @@ import dev.itsyourap.newsapp.presentation.onboarding.model.pages
 import dev.itsyourap.newsapp.presentation.Dimens.MediumPadding2
 import dev.itsyourap.newsapp.presentation.Dimens.PageIndicatorWidth
 import dev.itsyourap.newsapp.presentation.onboarding.components.OnBoardingPage
+import dev.itsyourap.newsapp.ui.theme.NewsAppTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -100,7 +104,14 @@ fun OnBoardingScreen(
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun OnBoardingScreenPreview() {
-    OnBoardingScreen(event = {})
+    NewsAppTheme {
+        Surface(
+            color = MaterialTheme.colorScheme.background
+        ) {
+            OnBoardingScreen(event = {})
+        }
+    }
 }
