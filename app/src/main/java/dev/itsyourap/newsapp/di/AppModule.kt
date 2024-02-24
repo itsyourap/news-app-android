@@ -1,10 +1,14 @@
 package dev.itsyourap.newsapp.di
 
 import android.app.Application
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.itsyourap.newsapp.data.local.NewsDao
+import dev.itsyourap.newsapp.data.local.NewsDatabase
+import dev.itsyourap.newsapp.data.local.NewsTypeConverter
 import dev.itsyourap.newsapp.data.manager.LocalUserManagerImpl
 import dev.itsyourap.newsapp.data.remote.NewsApi
 import dev.itsyourap.newsapp.data.repository.NewsRepositoryImpl
@@ -17,6 +21,7 @@ import dev.itsyourap.newsapp.domain.usecases.news.GetNews
 import dev.itsyourap.newsapp.domain.usecases.news.NewsUseCases
 import dev.itsyourap.newsapp.domain.usecases.news.SearchNews
 import dev.itsyourap.newsapp.util.Constants
+import dev.itsyourap.newsapp.util.Constants.NEWS_DATABASE_NAME
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -34,7 +39,7 @@ object AppModule {
     @Singleton
     fun provideAppEntryUseCases(
         localUserManager: LocalUserManager
-    ) = AppEntryUseCases(
+    ): AppEntryUseCases = AppEntryUseCases(
         readAppEntry = ReadAppEntry(localUserManager),
         saveAppEntry = SaveAppEntry(localUserManager)
     )
@@ -63,4 +68,22 @@ object AppModule {
         getNews = GetNews(newsRepository),
         searchNews = SearchNews(newsRepository)
     )
+
+    @Provides
+    @Singleton
+    fun provideNewsDatabase(
+        application: Application
+    ): NewsDatabase = Room.databaseBuilder(
+        context = application,
+        klass = NewsDatabase::class.java,
+        name = NEWS_DATABASE_NAME
+    ).addTypeConverter(NewsTypeConverter())
+        .fallbackToDestructiveMigration()
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideNewsDao(
+        newsDatabase: NewsDatabase
+    ): NewsDao = newsDatabase.newsDao
 }

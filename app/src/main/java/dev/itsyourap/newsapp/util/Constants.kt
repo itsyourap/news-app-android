@@ -5,4 +5,5 @@ object Constants {
     const val APP_ENTRY_KEY = "app_entry"
     const val NEWS_API_KEY = "4a0c61d2590a48f8b2d3dc4d4b12014d"
     const val NEWS_BASE_URL = "https://newsapi.org/v2/"
+    const val NEWS_DATABASE_NAME = "news_db"
 }
