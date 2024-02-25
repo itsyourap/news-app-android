@@ -23,6 +23,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,6 +45,7 @@ fun SearchBar(
     val interactionSource = remember {
         MutableInteractionSource()
     }
+    val focusRequester = remember { FocusRequester() }
     val isClicked = interactionSource.collectIsPressedAsState().value
 
     LaunchedEffect(key1 = isClicked) {
@@ -55,7 +58,8 @@ fun SearchBar(
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .searchBarBorder(),
+                .searchBarBorder()
+                .focusRequester(focusRequester),
             value = text,
             onValueChange = onValueChange,
             readOnly = readOnly,
@@ -87,9 +91,13 @@ fun SearchBar(
                     onSearch()
                 }
             ),
-            textStyle = MaterialTheme.typography.bodySmall,
+            textStyle = MaterialTheme.typography.bodyMedium,
             interactionSource = interactionSource
         )
+    }
+
+    LaunchedEffect(Unit){
+        focusRequester.requestFocus()
     }
 }
 

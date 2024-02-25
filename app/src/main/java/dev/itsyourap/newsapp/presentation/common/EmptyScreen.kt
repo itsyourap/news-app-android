@@ -35,7 +35,7 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 @Composable
-fun EmptyScreen(error: LoadState.Error? = null) {
+fun EmptyScreen(error: LoadState.Error? = null, messageStr: String? =  null) {
     var message by remember {
         mutableStateOf(parseErrorMessage(error = error))
     }
@@ -43,8 +43,9 @@ fun EmptyScreen(error: LoadState.Error? = null) {
         mutableIntStateOf(R.drawable.ic_network_error)
     }
     if (error == null){
-        message = "You have not saved news so far !"
+        message = "You have not saved news so far!"
         icon = R.drawable.ic_search_document
+        messageStr?.let { message = messageStr }
     }
     var startAnimation by remember {
         mutableStateOf(false)
