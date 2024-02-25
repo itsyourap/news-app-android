@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Env Files
+.env
+.env.example
+.env.local
+.env.staging

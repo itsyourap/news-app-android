@@ -1,1 +1,4 @@
 /build
+
+# Room Database Schema (Generated during build)
+/schemas/
