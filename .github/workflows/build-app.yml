@@ -1,0 +1,80 @@
+name: Build Application
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.gradle.kts'
+      - 'app/src/**'
+      - '.github/workflows/build-app.yml'
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.gradle.kts'
+      - 'app/src/**'
+      - '.github/workflows/build-app.yml'
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 17 and Gradle cache
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Make Gradle executable
+        run: chmod +x gradlew
+
+      # Build App
+      - name: Build Application with Gradle
+        env:
+            NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        run: ./gradlew build
+
+      # Build Debug APK
+      - name: Build debug apk
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        run: ./gradlew assembleDebug
+
+      # Build Release APK
+      - name: Build release apk
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        run: ./gradlew assemble
+
+      # Build Bundle AAB Release
+      - name: Build release aab
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+        run: ./gradlew app:bundleRelease
+
+      - name: Upload the app-debug.apk artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+
+      - name: Upload the app-release.apk artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+
+      - name: Upload the app-release.aab artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: aab-release
+          path: app/build/outputs/bundle/release/app-release.aab
+
+      - name: Upload the Room Database Schema
+        uses: actions/upload-artifact@v4
+        with:
+          name: room-database-schema
+          path: app/schemas/**/*.json
