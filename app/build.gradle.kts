@@ -28,10 +28,7 @@ android {
             arg("room.schemaLocation", "$projectDir/schemas")
         }
 
-        val properties = Properties()
-        properties.load(project.rootProject.file(".env").inputStream())
-        val newsApiKey = System.getenv("NEWS_API_KEY") ?: properties.getProperty("NEWS_API_KEY")
-        buildConfigField("String", "NEWS_API_KEY", "\"$newsApiKey\"")
+        buildConfigField("String", "NEWS_API_KEY", "\"${getVariable("NEWS_API_KEY", null)}\"")
     }
 
     buildTypes {
@@ -135,4 +132,18 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+fun getVariable(name: String, defaultValue: String?): String? {
+    var value = System.getenv(name)
+    if (value == null) {
+        val envFile = project.rootProject.file(".env")
+        if (!envFile.exists())
+            return defaultValue
+
+        val properties = Properties()
+        properties.load(envFile.inputStream())
+        value = properties.getProperty(name)
+    }
+    return value ?: defaultValue
 }
